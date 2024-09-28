@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { usePizza } from '../context/PizzaContext';
+import { usePizza } from '../context/PizzaContext'; 
 import { useCart } from '../context/CartContext';
 
 const PizzaPage = () => {
-  const { id } = useParams();
+  const { id } = useParams(); 
   const navigate = useNavigate();
-  const { pizzas } = usePizza(); 
+  const { pizza, fetchPizzaById, loading, error } = usePizza(); 
   const { addToCart } = useCart();
-  
-  const pizza = pizzas.find(p => p.id === id);
 
+  useEffect(() => {
+    fetchPizzaById(id);
+  }, [id]);
+
+  if (loading) return <p>Cargando pizza...</p>;
+  if (error) return <p>Error: {error}</p>;
   if (!pizza) return <p>No se encontró la pizza</p>;
 
   return (
@@ -24,12 +28,12 @@ const PizzaPage = () => {
       <p>{pizza.desc}</p>
       <p><strong>Ingredientes:</strong> {pizza.ingredients.join(', ')}</p>
       <p style={{ fontSize: '30px' }}><strong>Precio: ${pizza.price}</strong></p>
-      <button style={{ background: '#0D6EFD', color: 'white' }} onClick={() => addToCart(pizza)}>Añadir al Carrito </button>
+      <button style={{ background: '#0D6EFD', color: 'white' }} onClick={() => addToCart(pizza)}>
+        Añadir al Carrito
+      </button>
       <button onClick={() => navigate(-1)}>Volver</button>
     </div>
   );
 };
 
 export default PizzaPage;
-
-

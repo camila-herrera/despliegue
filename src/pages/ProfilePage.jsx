@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/UserContext';
+import { Navigate } from 'react-router-dom';
 
 const ProfilePage = () => {
+  const { authUser, logOut } = useContext(GlobalContext);
+
+  if (!authUser.token) {
+    return <Navigate to="/login" />;
+  }
+
+
   return (
-    <div className="profile-page" >
+    <div className="profile-page" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.7)', zIndex: '1'}} >
       <div className="containerP ">
-        <h2 style={{ textAlign: 'center' }}>Bienvenido, Usuario</h2>
+        <h2 style={{ textAlign: 'center' }}>Bienvenido {authUser.username}</h2>
         <form className="row g-3">
           <div className="col-12">
-            <label htmlFor="staticEmail2" className="form-label">Tú Correo Electrónico</label>
-            <input 
-              type="text" 
-              readOnly 
-              className="form-control" 
-              id="staticEmail2" 
-              value="usuario@ejemplo.com" 
-              style={{ backgroundColor: 'transparent' }}
-            />
+            <p>Correo Electrónico: {authUser.email}</p>
           </div>
           <div className="col-12 d-flex justify-content-center">
             <button 
+              onClick={logOut}
               type="submit" 
               className="btn btn-primary" 
               style={{ maxWidth: '150px', marginTop: '20px' }}
