@@ -178,3 +178,80 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: auto auto; /* 2 columnas en tabletas */
+  }
+
+  .mb-3, .carta p, .containerP {
+    width: 100%; /* Ajustar el ancho a 100% en móviles */
+    padding: 10px; /* Reducir el padding */
+  }
+
+  .Barra h3 {
+    font-size: 18px; /* Ajustar el tamaño del texto en la barra para pantallas pequeñas */
+  }
+
+  .card-container {
+    grid-template-columns: 1fr; /* Mostrar solo una columna en móviles */
+    gap: 5px;
+  }
+
+  .carta button {
+    width: 140px; /* Reducir el ancho de los botones en móviles */
+  }
+
+  .header {
+    height: 150px; /* Reducir el tamaño del header */
+  }
+
+  .header-content h1 {
+    font-size: 18px; /* Ajustar tamaño del título */
+  }
+
+  .header-content h3 {
+    font-size: 12px;
+  }
+
+  .Footer {
+    font-size: 10px; /* Reducir el tamaño del texto en el pie de página */
+  }
+
+  .pizzaimg {
+    width: 10px; /* Ajustar el tamaño de los iconos de pizza */
+  }
+
+  .carta p {
+    width: 90%; /* Ajustar el ancho del texto de descripción */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: auto; /* En móviles más pequeños, una sola columna */
+  }
+
+  .Barra {
+    flex-direction: column; /* Poner la barra en columna en pantallas muy pequeñas */
+  }
+
+  .header {
+    height: 120px; /* Ajustar aún más el tamaño del header */
+  }
+
+  .header-content h1 {
+    font-size: 16px; /* Reducir el tamaño del título en móviles pequeños */
+  }
+
+  .header-content h3 {
+    font-size: 10px;
+  }
+
+  .carta button {
+    width: 120px; /* Reducir el tamaño de los botones aún más */
+  }
+
+  .Footer {
+    font-size: 8px; /* Reducir el tamaño del pie de página en pantallas pequeñas */
+  }
+}
