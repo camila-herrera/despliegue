@@ -25,7 +25,7 @@ export const PizzaProvider = ({ children }) => {
  
   const fetchPizzaById = async (id) => {
     try {
-      const response = await fetch(`https://backend-pizzas-qa4r.onrender.com/api/pizzas${id}`);
+      const response = await fetch(`https://backend-pizzas-qa4r.onrender.com/api/pizzas/${id}`);
       if (!response.ok) throw new Error('Error al obtener la pizza');
       const data = await response.json();
       setPizza(data); 

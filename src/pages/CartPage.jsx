@@ -7,7 +7,7 @@ import { GlobalContext } from '../context/UserContext';
 const Cart = () => {
   const { authUser } = useContext(GlobalContext);
   const isUserAuthenticated = authUser.token;
-  const { cartItems, removeFromCart, updateQuantity } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, vaciarCarrito } = useCart();
   const [message, setMessage] = useState(null);
   const getTotal = () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const handleCheckout = async () => {
@@ -16,7 +16,7 @@ const Cart = () => {
       return;}
 
     try {
-      const response = await fetch("http://localhost:5000/api/checkouts", {
+      const response = await fetch("https://backend-pizzas-qa4r.onrender.com/api/checkouts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,6 +29,7 @@ const Cart = () => {
 
       if (response.ok) {
         setMessage("Compra realizada con éxito!, sientese a esperar 😅 ");
+        vaciarCarrito()
       } else {
         setMessage(data?.error || "Ocurrió un error al procesar tu compra.");
       }
